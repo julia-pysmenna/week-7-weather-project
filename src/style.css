@@ -55,6 +55,11 @@ li {
   line-height: 1;
 }
 
+.weather-temperature .active {
+  color: #202124;
+  cursor: default;
+}
+
 a {
   text-decoration: none;
 }
