@@ -42,12 +42,22 @@ function displayTemperature(response) {
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
-  console.log(response.data);
 }
 
-let city = "Kyiv";
-let units = "metric";
-let apiKey = "745dc5780612f3ff28ed6a9ef9d290f3";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-axios.get(apiUrl).then(displayTemperature);
+function search(city) {
+  let units = "metric";
+  let apiKey = "745dc5780612f3ff28ed6a9ef9d290f3";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityImputElement = document.querySelector("#city-imput");
+  search(cityImputElement.value);
+}
+
+search("Kyiv");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
